@@ -1,0 +1,86 @@
+\documentclass{beamer}
+%\usepackage{bookman}
+\usetheme{Berkeley}
+% choose color scheme
+\usecolortheme{dolphin}
+\usepackage{listings}
+\title[Sweave Basics]{ Brief Tour of Sweave Basics}
+\author[A. Beale ]{Alan Beale}
+\date[May 2011]{May 15, 2011}
+\begin{document}
+\lstset{language=R}
+\begin{frame} [plain]
+  \titlepage
+\end{frame}
+\section{Why}
+\begin{frame}{Why I use Sweave to combine R and Latex}
+\end{frame}
+\section{R Use Cases}
+\begin{frame}[fragile] {R Code and results in document}
+
+  R code pilfered from the xtable help page
+
+
+<<load-data>>=
+require("xtable")
+data(tli)
+fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data=tli)
+@  %def
+
+\end{frame}
+\begin{frame}[fragile] {R results only}
+
+  
+\begin{lstlisting}
+
+ <<show-summary,echo=F>>=
+  summary(fm1)
+ @ 
+
+\end{lstlisting}
+
+<<show-summary,echo=F>>=
+  summary(fm1)
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile] {R Code producing a table}
+
+\begin{lstlisting}
+
+ <<echo=F,results=tex>>=
+ xtable(summary(fm1))
+ @ 
+\end{lstlisting}
+
+<<echo=F,results=tex>>=
+xtable(summary(fm1))
+@ 
+
+\end{frame}
+
+\begin{frame} {R Code producing a figure}
+\end{frame}
+\section{Sweave Command Line}
+\lstset{language=bash}
+\begin{frame}[fragile] {Running Sweave}
+  
+\begin{lstlisting}
+ R CMD Sweave sweaveBasics.Rnw
+\end{lstlisting}
+ 
+\end{frame}
+\begin{frame}[fragile] {Running Stangle}
+
+\begin{lstlisting}
+ R CMD Stangle sweaveBasics.Rnw
+\end{lstlisting}
+  
+\end{frame}
+\section{Conculsion}
+\begin{frame} {Benefits and Limitations}
+\end{frame}
+
+
+\end{document}
