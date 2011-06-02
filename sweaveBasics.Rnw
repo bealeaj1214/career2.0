@@ -24,9 +24,16 @@
 <<load-data>>=
 require("xtable")
 data(tli)
-fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data=tli)
+fm1 <- aov(tlimth ~ sex + ethnicty + 
+           grade + disadvg, data=tli)
+
 @  %def
 
+\end{frame}
+\begin{frame}[fragile]
+<<structure>>=
+str(fm1)
+@ 
 \end{frame}
 \begin{frame}[fragile] {R results only}
 
@@ -53,7 +60,7 @@ fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data=tli)
    xtable(summary(fm1))
  @ 
 \end{lstlisting}
-
+\pause
 <<echo=F,results=tex>>=
 xtable(summary(fm1))
 @ 
@@ -119,6 +126,7 @@ summary(cars)
 \begin{frame}[fragile]
 Show a scatter plot from cars data, proving that cars data isn't very
 interesting.
+ \pause
 <<fig=T,echo=F,eps=F,width=2.75,height=2.75>>=
 plot(speed ~dist,data=cars,col=3)
 @ 
@@ -128,7 +136,7 @@ plot(speed ~dist,data=cars,col=3)
 \section{Conclusion}
 \begin{frame} {Benefits and Limitations}
   \begin{itemize}
-    \item Well documented with Rich Google quest base
+    \item Well documented with Rich Google Q\&A base
     \item Straight forward
     \item Good starting point for working with R and Latex
     \item Helps teach patience
