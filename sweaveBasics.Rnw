@@ -106,9 +106,42 @@ plot(junk2,main="USD to Euro exchange rate",ylab="exchange rate",col=3)
 \end{lstlisting}
   
 \end{frame}
-\section{Conculsion}
+\section{All Together Now}
+\begin{frame}[fragile]
+  Cars is a built-in data set in the base package of R.
+
+<<echo=T>>=
+data(cars) # Gives access to the data frame cars
+summary(cars)
+@ 
+
+\end{frame}
+\begin{frame}[fragile]
+Show a scatter plot from cars data, proving that cars data isn't very
+interesting.
+<<fig=T,echo=F,eps=F,width=2.75,height=2.75>>=
+plot(speed ~dist,data=cars,col=3)
+@ 
+
+
+\end{frame}
+\section{Conclusion}
 \begin{frame} {Benefits and Limitations}
+  \begin{itemize}
+    \item Well documented with Rich Google quest base
+    \item Straight forward
+    \item Good starting point for working with R and Latex
+    \item Helps teach patience
+    \item Limited by your Latex ability
+  \end{itemize}
 \end{frame}
 
-
+\begin{frame} { Limitations}
+  \begin{itemize}
+    \item Can be slow
+    \item Doesn't cache previous work
+    \item you can out grow Sweave
+    \item Learning Latex can be a Zen experience
+ \end{itemize}
+\end{frame}
 \end{document}
