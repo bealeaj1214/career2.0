@@ -9,15 +9,67 @@
 \date[May 2011]{May 15, 2011}
 \begin{document}
 \lstset{language=R}
+
+\setbeamercovered{invisible}
+\graphicspath{{images//}}
+
 \begin{frame} [plain]
   \titlepage
 \end{frame}
 \section{Why}
+
 \begin{frame}{Why I use Sweave to combine R and Latex}
+ \begin{block}<2->
+   {Aspirational Programming}
+\end{block}
+
+\begin{center}
+\includegraphics[width=0.45\columnwidth]{thumb-OprahWinfrey}
+\end{center}
 \end{frame}
+
+\begin{frame}{Why I use R and Latex}
+ \begin{block}
+   {Competing Forces}
+\end{block}
+\pause
+\begin{columns}[t] 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[scale=.4]{etufte}
+\end{center}
+\pause 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[scale=.35]{billgates}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Why I use Sweave to combine R and Latex}
+\begin{block}
+   {Literate Programming}
+\end{block}
+ 
+\pause
+\begin{columns}[t] 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[width=0.55\columnwidth]{humor-donald-knuth-jokes-24307359}
+\end{center}
+\pause 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[width=0.55\columnwidth]{Leisch}
+\end{center}
+\end{columns}
+\end{frame}
+
+
 \section{R Use Cases}
 \begin{frame}[fragile] {R Code and results in document}
-
+ Use case for making a report 
+ \pause
   R code pilfered from the xtable help page
 
 

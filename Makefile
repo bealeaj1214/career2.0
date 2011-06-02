@@ -8,13 +8,19 @@ TEXINPUTS:=.:build:
 build ::
 	test -d $@ || mkdir -p $@
 
-sweaveBasicsOutline.pdf :: sweaveBasicsOutline.tex build
+%.pdf :: %.tex
 	texi2dvi -b -p --tidy --build-dir=build $<
+
+
+%.tex :: %.Rnw
+	R CMD Sweave $<
+
+sweaveBasicsOutline.pdf :: sweaveBasicsOutline.tex build
 
 sweaveBasics.tex :: sweaveBasics.Rnw
 	R CMD Sweave $<
 
 sweaveBasics.pdf :: sweaveBasics.tex build
-	texi2dvi -b -p --tidy --build-dir=build $<
+
 
 
