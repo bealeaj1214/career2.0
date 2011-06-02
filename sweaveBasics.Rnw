@@ -97,7 +97,7 @@ str(fm1)
  @ 
 
 \end{lstlisting}
-
+\pause
 <<show-summary,echo=F>>=
   summary(fm1)
 @ 
@@ -152,6 +152,9 @@ plot(junk2,main="USD to Euro exchange rate",ylab="exchange rate",col=3)
 \section{Sweave Command Line}
 \lstset{language=bash}
 \begin{frame}[fragile] {Running Sweave}
+ \begin{block}
+   {Weaving from Command Line}
+\end{block}
   
 \begin{lstlisting}
  R CMD Sweave sweaveBasics.Rnw
@@ -159,6 +162,9 @@ plot(junk2,main="USD to Euro exchange rate",ylab="exchange rate",col=3)
  
 \end{frame}
 \begin{frame}[fragile] {Running Stangle}
+ \begin{block}
+   {Tangling from Command Line}
+\end{block}
 
 \begin{lstlisting}
  R CMD Stangle sweaveBasics.Rnw
@@ -178,7 +184,8 @@ summary(cars)
 \begin{frame}[fragile]
 Show a scatter plot from cars data, proving that cars data isn't very
 interesting.
- \pause
+\end{frame}
+\begin{frame}[fragile]
 <<fig=T,echo=F,eps=F,width=2.75,height=2.75>>=
 plot(speed ~dist,data=cars,col=3)
 @ 
@@ -186,7 +193,7 @@ plot(speed ~dist,data=cars,col=3)
 
 \end{frame}
 \section{Conclusion}
-\begin{frame} {Benefits and Limitations}
+\begin{frame} {Benefits}
   \begin{itemize}
     \item Well documented with Rich Google Q\&A base
     \item Straight forward
