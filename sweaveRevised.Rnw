@@ -1,0 +1,216 @@
+\documentclass{beamer}
+%\usepackage{bookman}
+\usetheme{Berkeley}
+% choose color scheme
+\usecolortheme{dolphin}
+\usepackage{listings}
+\title[Sweave Basics]{ Brief Tour of Sweave Basics}
+\author[A. Beale ]{Alan Beale}
+\date[May 2011]{May 15, 2011}
+\begin{document}
+\lstset{language=R}
+
+\setbeamercovered{invisible}
+\graphicspath{{images//}}
+
+\begin{frame} [plain]
+  \titlepage
+\end{frame}
+\section{Why}
+
+\begin{frame}{Why I use Sweave to combine R and Latex}
+ \begin{block}<2->
+   {Aspirational Programming}
+\end{block}
+
+\begin{center}
+\includegraphics[width=0.45\columnwidth]{thumb-OprahWinfrey}
+\end{center}
+\end{frame}
+
+\begin{frame}{Why I use R and Latex}
+ \begin{block}
+   {Competing Forces}
+\end{block}
+\pause
+\begin{columns}[t] 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[scale=.4]{etufte}
+\end{center}
+\pause 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[scale=.35]{billgates}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Why I use Sweave to combine R and Latex}
+\begin{block}
+   {Literate Programming}
+\end{block}
+ 
+\pause
+\begin{columns}[t] 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[width=0.55\columnwidth]{humor-donald-knuth-jokes-24307359}
+\end{center}
+\pause 
+\column{.5 \textwidth}
+\begin{center}
+\includegraphics[width=0.55\columnwidth]{Leisch}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+\section{R Use Cases}
+\begin{frame}[fragile] {R Code and results in document}
+ Use case for making a report 
+ \pause
+  R code pilfered from the xtable help page
+<<setup,echo=F>>=
+options(useFancyQuotes = F, width=50) 
+@ 
+
+<<load-data>>=
+require("xtable")
+data(tli)
+fm1 <- aov(tlimth ~ sex + ethnicty + 
+           grade + disadvg, data=tli)
+
+@  %def
+
+\end{frame}
+\begin{frame}[fragile]
+<<structure>>=
+str(fm1)
+@ 
+\end{frame}
+\begin{frame}[fragile] {R results only}
+
+  
+\begin{lstlisting}
+
+ <<show-summary,echo=F,cache=true>>=
+  summary(fm1)
+ @ 
+
+\end{lstlisting}
+\pause
+<<show-summary,echo=F,cache=true>>=
+  summary(fm1)
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile] {R Code producing a table}
+
+\begin{lstlisting}
+
+ <<echo=F,results=tex,cache=true>>=
+   xtable(summary(fm1))
+ @ 
+\end{lstlisting}
+\pause
+<<echo=F,results=tex,cache=true>>=
+xtable(summary(fm1))
+@ 
+
+\end{frame}
+
+\begin{frame} {R Code producing a figure}
+<<echo=F,cache=true>>=
+require("quantmod")
+
+euroRate<-function(x) {
+ myenv <- new.env()
+ getSymbols("USD/EUR",env=myenv,src="oanda",from=x,to=x+499)
+ myenv$USDEUR
+ }
+
+fromDates<- as.Date("1999/01/01")+((0 :9) *500)
+junk <-sapply(fromDates,euroRate)
+
+junk2<-c(junk[[1]],junk[[2]],junk[[3]],junk[[4]],junk[[5]],junk[[6]],junk[[7]],junk[[8]])
+@ 
+
+<<fig=T,echo=F,eps=F,cache=true>>=
+plot(junk2,main="USD to Euro exchange rate",ylab="exchange rate",col=3)
+@ 
+\end{frame}
+\begin{frame}[fragile]
+  \begin{lstlisting}
+    
+    <<fig=T,echo=F,eps=F>>>>=
+    plot(junk2,main="USD ...",
+    ylab="exchange rate",
+    col=3)
+    @ 
+  \end{lstlisting}
+\end{frame}
+\section{Sweave Command Line}
+\lstset{language=bash}
+\begin{frame}[fragile] {Running Sweave}
+ \begin{block}
+   {Weaving from Command Line}
+\end{block}
+  
+\begin{lstlisting}
+ R CMD Sweave sweaveBasics.Rnw
+\end{lstlisting}
+ 
+\end{frame}
+\begin{frame}[fragile] {Running Stangle}
+ \begin{block}
+   {Tangling from Command Line}
+\end{block}
+
+\begin{lstlisting}
+ R CMD Stangle sweaveBasics.Rnw
+\end{lstlisting}
+  
+\end{frame}
+\section{All Together Now}
+\begin{frame}[fragile]
+  Cars is a built-in data set in the base package of R.
+
+<<echo=T>>=
+data(cars) # Gives access to the data frame cars
+summary(cars)
+@ 
+
+\end{frame}
+\begin{frame}[fragile]
+Show a scatter plot from cars data, proving that cars data isn't very
+interesting.
+\end{frame}
+\begin{frame}[fragile]
+<<fig=T,echo=F,eps=F,width=2.75,height=2.75, cache=true>>=
+plot(speed ~dist,data=cars,col=3)
+@ 
+
+
+\end{frame}
+\section{Conclusion}
+\begin{frame} {Benefits}
+  \begin{itemize}
+    \item Well documented with Rich Google Q\&A base
+    \item Straight forward
+    \item Good starting point for working with R and Latex
+    \item Helps teach patience
+    \item Limited by your Latex ability
+  \end{itemize}
+\end{frame}
+
+\begin{frame} { Limitations}
+  \begin{itemize}
+    \item Can be slow
+    \item Doesn't cache previous work
+    \item you can out grow Sweave
+    \item Learning Latex can be a Zen experience
+ \end{itemize}
+\end{frame}
+\end{document}

@@ -24,3 +24,5 @@ sweaveBasics.pdf :: sweaveBasics.tex build
 
 
 
+sweaveRevised.tex :: sweaveRevised.Rnw
+	Rscript sweaveRevised.cmd
