@@ -73,10 +73,11 @@
   R code pilfered from the xtable help page
 <<setup,echo=F>>=
 options(useFancyQuotes = F, width=50) 
+require("xtable")
+require("quantmod")
 @ 
 
-<<load-data>>=
-require("xtable")
+<<load-data,echo=F>>=
 data(tli)
 fm1 <- aov(tlimth ~ sex + ethnicty + 
            grade + disadvg, data=tli)
@@ -94,9 +95,9 @@ str(fm1)
   
 \begin{lstlisting}
 
- <<show-summary,echo=F,cache=true>>=
+<<show-summary,echo=F,cache=true>>=
   summary(fm1)
- @ 
+@ 
 
 \end{lstlisting}
 \pause
@@ -115,7 +116,7 @@ str(fm1)
  @ 
 \end{lstlisting}
 \pause
-<<echo=F,results=tex,cache=true>>=
+<<show-table,echo=F,results=tex,cache=true>>=
 xtable(summary(fm1))
 @ 
 
@@ -123,7 +124,6 @@ xtable(summary(fm1))
 
 \begin{frame} {R Code producing a figure}
 <<echo=F,cache=true>>=
-require("quantmod")
 
 euroRate<-function(x) {
  myenv <- new.env()
@@ -132,14 +132,14 @@ euroRate<-function(x) {
  }
 
 fromDates<- as.Date("1999/01/01")+((0 :9) *500)
-junk <-sapply(fromDates,euroRate)
+junk2 <-do.call("c",lapply(fromDates,euroRate))
 
-junk2<-c(junk[[1]],junk[[2]],junk[[3]],junk[[4]],junk[[5]],junk[[6]],junk[[7]],junk[[8]])
 @ 
 
-<<fig=T,echo=F,eps=F,cache=true>>=
+<<usdEuro,fig=T,echo=F,eps=F,cache=true>>=
 plot(junk2,main="USD to Euro exchange rate",ylab="exchange rate",col=3)
 @ 
+
 \end{frame}
 \begin{frame}[fragile]
   \begin{lstlisting}
