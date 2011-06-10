@@ -95,13 +95,13 @@ str(fm1)
   
 \begin{lstlisting}
 
-<<show-summary,echo=F,cache=true>>=
+ <<show-summary,echo=F>>=
   summary(fm1)
-@ 
+  @ 
 
 \end{lstlisting}
 \pause
-<<show-summary,echo=F,cache=true>>=
+<<show-summary,echo=F>>=
   summary(fm1)
 @ 
 
@@ -111,12 +111,12 @@ str(fm1)
 
 \begin{lstlisting}
 
- <<echo=F,results=tex,cache=true>>=
+ <<echo=F,results=tex>>=
    xtable(summary(fm1))
- @ 
+  @ 
 \end{lstlisting}
 \pause
-<<show-table,echo=F,results=tex,cache=true>>=
+<<show-table,echo=F,results=tex>>=
 xtable(summary(fm1))
 @ 
 
